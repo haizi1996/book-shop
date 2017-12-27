@@ -1,25 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="utf-8" %>
-<%@ page isELIgnored="false" %>
-
-<html>
-<head>
-    <%--<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"/>--%>
-    <%--<script src="${pageContext.request.contextPath}/js/main.js"></script>--%>
-
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>添加商品 - bookstore</title>
-</head>
-<body>
-<%@ include file="../common/admin_head.jsp" %>
-<%@ include file="./../common/tag.jsp"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ include file="./header.jsp" %>
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading text-center">
             <h2>添加商品</h2>
         </div>
         <form class="form-horizontal" action="/admin/doAddBook" method="post" enctype="multipart/form-data"
-              onsubmit="return validate_add_product(this)">
+              onsubmit="return validate_add_product();">
 
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">商品名:</label>
@@ -65,19 +52,19 @@
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">数&nbsp;量:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control"  name="num" placeholder="name">
+                    <input type="text" class="form-control" id="num"  name="num" placeholder="name">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">图&nbsp;片:</label>
                 <div class="col-sm-10">
-                    <input type="file" class="form-control"  name="image" placeholder="name">
+                    <input type="file" class="form-control" id="image"  name="image" placeholder="name">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">描&nbsp;述:</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" name="description"></textarea>
+                    <textarea class="form-control" rows="3" id="description" name="description"></textarea>
                 </div>
             </div>
             <div class="form-group">
@@ -103,8 +90,42 @@
 <script type="text/javascript">
     
     function validate_add_product(form) {
-
-        return true;
+        i($("#inputEmail3").val()){
+            error("请填写图书名!!");
+        }else if($("#exampleInputAmount").val()){
+            error("请填写图书价格!!");
+        }else if($(".form-control").val()){
+            error("请填写图书分类!!");
+        }else if($("#num").val()){
+            error("请填写图书数量!!");
+        }else if($("#image").val()){
+            error("请填写图书图片!!");
+        }else if($("#description").val()){
+            error("请填写图书描述!!");
+        }else{
+            var formData = new FormData($("form:first")[0]);
+            $.ajax({
+                url: '/admin/doAddBook' ,
+                type: 'POST',
+                data: formData,
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (returndata) {
+                    if(returndata.state){
+                        alert(returndata.data);
+                        $("form:first")[0].reset();
+                    }else{
+                        alert(returndata.errorMess);
+                    }
+                },
+                error: function (returndata) {
+                    alert("图书添加失败!!!");
+                }
+            });
+        }
+        return false;
     }
     
 </script>

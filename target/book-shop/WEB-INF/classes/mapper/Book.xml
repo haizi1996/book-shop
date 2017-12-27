@@ -6,8 +6,8 @@
 
 
 
-    <select id="query" resultType="book" >
-      SELECT * from book;
+    <select id="query" resultType="bookDetail" >
+      SELECT book.id , book.name , book.price , book.num , book.image_Url , book.description , category.name categoryName  from book join category on book.category_id = category.id;
     </select>
 
     <insert id="addBook" parameterType="book">

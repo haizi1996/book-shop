@@ -1,16 +1,20 @@
 package com.book.service;
 
 import com.book.model.Book;
+import com.book.model.BookDetail;
 import com.book.model.Category;
 
 import java.util.List;
 
 public interface AdminService {
 
-    List<Book> getAllBook(Integer pageNum , Integer pageSize);
-
-    List<Category> getAllCategories();
+    List<BookDetail> getAllBook(Integer pageNum , Integer pageSize);
 
     Integer addBook(Book book);
 
+
+
+
+    List<Category> getAllCategories();
+    Integer addCategory(Category category);
 }

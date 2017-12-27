@@ -2,13 +2,13 @@ package com.book.model;
 
 
 public class Book  {
-	private Integer id;
-	private String name;
-	private Integer price;
-	private Integer num;
-	private String imageUrl;//
-	private String description;
-	private Integer categoryId;
+	protected Integer id;
+	protected String name;
+	protected Integer price;
+	protected Integer num;
+	protected String imageUrl;//
+	protected String description;
+	protected Integer categoryId;
 
 	public Integer getId() {
 		return id;

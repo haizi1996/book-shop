@@ -3,6 +3,7 @@ package com.book.controller;
 import com.book.dto.AbstractResult;
 import com.book.dto.BaseResult;
 import com.book.model.Book;
+import com.book.model.BookDetail;
 import com.book.model.Category;
 import com.book.service.AdminService;
 import com.book.util.JsonUtil;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,20 +37,20 @@ public class AdminController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String home() {
-        List<Book> books = adminService.getAllBook(1, PAGE_SIZE);
-        return "admin/index";
+        List<BookDetail> books = adminService.getAllBook(1, PAGE_SIZE);
+        return "admin/listBooks";
     }
 
-    @RequestMapping(value = "/admin/addBook", method = RequestMethod.GET)
-    public String addBook(Model model) {
+    @RequestMapping(value = "/admin/addBookUI", method = RequestMethod.GET)
+    public String addBookUI(Model model) {
         List<Category> categories = adminService.getAllCategories();
         AbstractResult baseResult = categories == null ? BaseResult.error("") : BaseResult.success(categories);
         model.addAttribute("baseResult", baseResult);
-        return "admin/add_books";
+        return "admin/addBook";
     }
 
 
-    @RequestMapping(value = "/admin/doAddBook", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/doAddBook", method = RequestMethod.POST , produces = "application/json;charset=utf-8")
     @ResponseBody
     public String doAddBook(MultipartFile image, Book book , HttpServletRequest request ) {
         if (image != null) {
@@ -62,7 +64,7 @@ public class AdminController {
                     book.setImageUrl(File.separator+"img" + File.separator + fileName );
                     Integer row  = adminService.addBook(book);
                     if(row > 0){
-                        return JsonUtil.objectToJson(BaseResult.error("添加书籍成功!!"));
+                        return JsonUtil.objectToJson(BaseResult.success("添加书籍成功!!"));
                     }
                     return JsonUtil.objectToJson(BaseResult.error("添加书籍失败!!"));
                 }catch (IOException e){
@@ -84,6 +86,31 @@ public class AdminController {
         AbstractResult baseResult = categories == null ? BaseResult.error("") : BaseResult.success(categories);
         model.addAttribute("baseResult", baseResult);
         return "admin/listCategory";
+    }
+
+    @RequestMapping(value="/admin/showAllBookes",method = RequestMethod.GET)
+    public String showAllBookes(Model model, @RequestParam(defaultValue = "1") Integer pageNum){
+        List<BookDetail> books = adminService.getAllBook(pageNum , PAGE_SIZE);
+        model.addAttribute("books", books);
+        return "admin/listBooks";
+    }
+
+    @RequestMapping(value="/admin/addCategoryUI",method = RequestMethod.GET)
+    public String addCategoryUI(){
+        return "admin/addCategory";
+    }
+
+    @RequestMapping(value="/admin/doAddCategory",method = RequestMethod.POST ,produces = "application/json;charset=utf-8" )
+    @ResponseBody
+    public String doAddCategory(Category category ){
+        Integer rows = adminService.addCategory(category);
+        if(rows > 0){
+            return JsonUtil.objectToJson(BaseResult.success("添加分类成功!!"));
+        }else if(rows < 0){
+            return JsonUtil.objectToJson(BaseResult.error("分类已经存在！！"));
+        }
+        return JsonUtil.objectToJson(BaseResult.error("添加分类失败!!"));
+
     }
 
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CategoryDao {
 
-	//void addCategory(Category c);
+	Integer addCategory(Category c) throws Exception;
 
 	List<Category> findAll() throws Exception;
 

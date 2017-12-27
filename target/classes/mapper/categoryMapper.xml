@@ -9,7 +9,7 @@
      SELECT id , NAME , description from category;
  </select>
     <update id="addCategory" parameterType="category">
-        INSERT INTO category values(#{id},#{name},#{description});
+        INSERT INTO category (name, description) values(#{name},#{description});
     </update>
 
     <select id="findCatetoryById" parameterType="Integer" resultType="category">

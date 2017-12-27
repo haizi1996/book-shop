@@ -1,5 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<%@ page isELIgnored="false" %>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="./header.jsp" %>
 <c:if test="${!baseResult.state}">
     没有分类，请先添加
