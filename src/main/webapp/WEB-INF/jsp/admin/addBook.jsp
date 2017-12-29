@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ include file="./header.jsp" %>
-<div class="container">
+<div class="container" style="width: 77%">
     <div class="panel panel-default">
         <div class="panel-heading text-center">
             <h2>添加商品</h2>

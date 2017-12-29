@@ -4,7 +4,7 @@
     没有分类，请先添加
 </c:if>
 <c:if test="${baseResult.state}">
-    <div class="container">
+    <div class="container" style="width: 77%">
         <div class="panel panel-default">
             <div class="panel-heading text-center">
                 <h2>分类列表</h2>

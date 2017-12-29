@@ -1,17 +1,17 @@
 package com.book.controller;
 
+import com.book.dto.BaseResult;
 import com.book.dto.Page;
-import com.book.model.BookDetail;
-import com.book.model.User;
+import com.book.model.*;
 import com.book.service.ClientService;
+import com.book.util.JsonUtil;
+import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.lang.model.type.IntersectionType;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -23,7 +23,9 @@ public class ClientController {
 
 
     @RequestMapping(value = "/" , method = RequestMethod.GET)
-    public String welcome(@RequestParam(defaultValue = "1") Integer pageNum , Model model){
+    public String welcome(@RequestParam(defaultValue = "1") Integer pageNum , Model model , HttpServletRequest request){
+        List<Category> categories = clientService.findAllCategory();
+        request.getSession().setAttribute("cs" , categories);
         List<BookDetail> bookDetails = clientService.getPageNumBook(pageNum , PAGE_SIZE);
         Integer totalRecords = clientService.getTotalRecords();
         Page page = new Page(pageNum , totalRecords , PAGE_SIZE).setRecords(bookDetails);
@@ -56,5 +58,33 @@ public class ClientController {
             request.getSession().setAttribute("user" , user);
         }
         return "diriect:/";
+    }
+
+    @RequestMapping(value = "/client/book/{id}/detail" , method = RequestMethod.GET)
+    public String getBookDetail(@PathVariable Integer id , Model model , HttpServletRequest request){
+        List<Category> categories = clientService.findAllCategory();
+        request.getSession().setAttribute("cs" , categories);
+        BookDetail bookDetail = clientService.getBookDetailById(id);
+        model.addAttribute("book" , bookDetail);
+        return "client/detail";
+    }
+
+
+    @RequestMapping(value = "/client/addCart/{id}" , method = RequestMethod.GET , produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String addCart(@PathVariable Integer id , HttpServletRequest request){
+        Book book = clientService.getBookDetailById(id);
+        Cart cart = (Cart)request.getSession().getAttribute("cart");
+        if(cart == null){
+            cart = new Cart();
+        }
+        cart.addBook(book);
+        request.getSession().setAttribute("cart" , cart);
+        return JsonUtil.objectToJson(BaseResult.success("加入购物车成功！！"));
+    }
+
+    @RequestMapping(value = "/client/showCart" , method = RequestMethod.GET)
+    public String showCart(){
+        return "client/showCart";
     }
 }

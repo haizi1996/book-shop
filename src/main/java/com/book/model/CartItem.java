@@ -1,11 +1,10 @@
 package com.book.model;
 
-import java.io.Serializable;
 
-public class CartItem implements Serializable {
+public class CartItem  {
 	private Book book;
 	private int num;
-	private float price;
+	private int price;
 	public Book getBook() {
 		return book;
 	}
@@ -18,7 +17,7 @@ public class CartItem implements Serializable {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public float getPrice() {
+	public int getPrice() {
 		return num*book.getPrice();
 	}
 //	public void setPrice(float price) {

@@ -12,5 +12,5 @@ public interface BookDao {
     int getTotalRecord();//查询所有的记录条数
     int getTotalRecord(String categoryId);
     List findPageBooks(int startindex, int pagesize, String categoryId);
-    Book findBookById(String bookId);
+    BookDetail findBookById(Integer bookId);
 }

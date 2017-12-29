@@ -9,7 +9,7 @@ public interface CategoryDao {
 
 	Integer addCategory(Category c) throws Exception;
 
-	List<Category> findAll() throws Exception;
+	List<Category> findAll() ;
 
 	//Category findCatetoryById(Integer categoryId);
 }

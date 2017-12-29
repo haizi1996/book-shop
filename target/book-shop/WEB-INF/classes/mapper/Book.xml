@@ -10,7 +10,7 @@
       SELECT book.id , book.name , book.price , book.num  ,book.author, book.image_Url , book.description , category.name categoryName  from book join category on book.category_id = category.id;
     </select>
 
-    <insert id="addBook" parameterType="book">
+    <insert id="addBook" parameterType="bookDetail">
 
         insert into book  (name ,price, category_id, num , author,image_url , description )
         values (#{name}, #{price}, #{categoryId} , #{num} , #{author} ,  #{imageUrl} , #{description});
@@ -18,6 +18,12 @@
 
     <select id="getTotalRecord" resultType="Integer" >
         select count(*) from book_store.book;
+    </select>
+
+    <select id="findBookById" resultType="bookDetail" parameterType="Integer">
+        SELECT book.id , book.name , book.price , book.num  ,book.author, book.image_Url , book.description , category.name categoryName  from book join category on book.category_id = category.id
+        where book.id = #{id}
+
     </select>
 
 </mapper>

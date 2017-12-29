@@ -8,9 +8,11 @@
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="expires" content="0">
+      <%@include file="./../common/admin_head.jsp" %>
 	<link href="/css/css.css" rel="stylesheet" type="text/css" />
-</head>
+
+  </head>
 <body style="text-align: center;">
 <br />
 <a href="${pageContext.request.contextPath}">首页</a>
@@ -23,7 +25,7 @@
 	欢迎您：${sessionScope.user.username}&nbsp;&nbsp;<a href="#">注销</a>
 </c:if>
 <a href="/servlet/ClientServlet?operation=showUsersOrders">我的订单</a>&nbsp;&nbsp;
-<a href="/client/showCart.jsp">购物车</a>
+<a href="/client/showCart">购物车</a>
 <br />
 <script language="javascript">
 	function qiehuan(num){
@@ -46,7 +48,7 @@
   <div id=menu_in>
     <div id=menu>
       <UL id=nav>
-        <LI><A class=nav_on id=mynav0 onmouseover=javascript:qiehuan(0) href="#"><SPAN>所有分类</SPAN></A></LI>
+        <LI><A class=nav_on id=mynav0 onmouseover=javascript:qiehuan(0) href="javascript:void(0);"><SPAN>所有分类</SPAN></A></LI>
         <LI class="menu_line"></LI>
       </UL>
       <div id=menu_con>

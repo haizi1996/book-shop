@@ -44,6 +44,13 @@ public class BookDaoTest extends BaseTest{
         for (BookDetail book : books) {
             System.out.println(book.toString());
         }
+    }
 
+    @Test
+    public void findBookDetail(){
+
+        BookDetail book = bookDao.findBookById(1111);
+
+        System.out.println(book.toString());
     }
 }

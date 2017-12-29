@@ -30,7 +30,7 @@
         }
     }
 </script>
-<div class="container">
+<div class="container" style="width: 77%">
     <div class="panel panel-default">
         <div id=menu>
             <UL id=nav>
