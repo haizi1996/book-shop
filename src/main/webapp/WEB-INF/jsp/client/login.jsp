@@ -1,43 +1,78 @@
-<%-- 
-	登录页面
-	@author: luoxn28
-	@date: 2016.5.14
---%>
-
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-
+		 pageEncoding="utf-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"/>
-	<script src="${pageContext.request.contextPath}/js/main.js"></script>
-	
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>登录页面 - bookstore</title>
+		<meta charset="utf-8">
+		<link href="/css/style.css" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<!--webfonts-->
+		<!--//webfonts-->
 </head>
 <body>
-	<%@ include file="../common/head.jsp" %>
-	<%@ include file="../common/menu_search.jsp" %>
+	<div class="main">
+		<div class="header" >
+			<h1>Login or Create a Free Account!</h1>
+		</div>
+			<form>
+				<ul class="left-form">
+					<h2>注册用户:</h2>
+					<li>
+						<input type="text"   placeholder="Username" required/>
+						<a href="#" class="icon ticker"> </a>
+						<div class="clear"> </div>
+					</li>
+					<li>
+						<input type="text"   placeholder="Email" required/>
+						<a href="#" class="icon ticker"> </a>
+						<div class="clear"> </div>
+					</li>
 
-	<div id="login_div">
-		<div id="login_div_left">
-			<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
-				<p><h4>个人用户登录</h4></p>
-				用户名:<input type="text" name="username"/> <br/>
-				密&nbsp;码:<input type="password" name="password"/> <br/>
-				&nbsp;<input type="checkbox" name="checkbox" value="checkbox"/>记住用户名&nbsp;&nbsp;
-				<input type="checkbox" name="checkbox" value="checkbox"/>自动登录&nbsp; <br/>
-				<input type="submit" value="登录"/>
+					<li>
+						<input type="password"   placeholder="password" required/>
+						<a href="#" class="icon into"> </a>
+						<div class="clear"> </div>
+					</li>
+					<li>
+						<input type="password"   placeholder="password" required/>
+						<a href="#" class="icon into"> </a>
+						<div class="clear"> </div>
+					</li>
+					<li>
+						<input type="text"   placeholder="姓名" required/>
+						<a href="#" class="icon ticker"> </a>
+						<div class="clear"> </div>
+					</li>
+					<li>
+						<input type="text"   placeholder="地址" required/>
+						<a href="#" class="icon ticker"> </a>
+						<div class="clear"> </div>
+					</li>
+					<li>
+						<input type="text"   placeholder="电话" required/>
+						<a href="#" class="icon ticker"> </a>
+						<div class="clear"> </div>
+					</li>
+					<!-- <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Please inform me of upcoming  w3layouts, Promotions and news</label> -->
+					<input type="submit" onClick="myFunction()" value="Create Account">
+						<div class="clear"> </div>
+				</ul>
+				<ul class="right-form">
+					<h3>Login:</h3>
+					<div>
+						<li><input type="text"  placeholder="Username" required/></li>
+						<li> <input type="password"  placeholder="Password" required/></li>
+						<h4>I forgot my Password!</h4>
+							<input type="submit" onClick="myFunction()" value="Login" >
+					</div>
+					<div class="clear"> </div>
+				</ul>
+				<div class="clear"> </div>
+
 			</form>
+
 		</div>
-		<div id="login_div_right">
-			<h4>你还没有注册</h4>
-			<p>注册新会员，享受优惠价格和完美购书体验。。。</p>
-			<p>万种图书，供你选择！赶快注册吧！！！</p>
-			<a href="${pageContext.request.contextPath}/client/register.jsp">
-				<img alt="点击注册" src="../img/register.png"/>
-			</a>
-		</div>
-	</div>
+
 </body>
 </html>

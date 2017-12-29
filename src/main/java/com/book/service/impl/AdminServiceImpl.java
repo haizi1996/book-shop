@@ -1,8 +1,11 @@
 package com.book.service.impl;
 
 
+import com.book.dao.AdminDao;
 import com.book.dao.BookDao;
 import com.book.dao.CategoryDao;
+import com.book.dao.UserDao;
+import com.book.model.Admin;
 import com.book.model.Book;
 import com.book.model.BookDetail;
 import com.book.model.Category;
@@ -13,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 
@@ -25,7 +29,13 @@ public class AdminServiceImpl implements AdminService {
     private BookDao bookDao;
 
     @Autowired
+    private UserDao userDao;
+
+    @Autowired
     private CategoryDao categoryDao;
+
+    @Resource
+    private AdminDao adminDao;
 
     private static Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
 
@@ -57,5 +67,10 @@ public class AdminServiceImpl implements AdminService {
             LOGGER.error(e.getMessage());
             return -1;
         }
+    }
+
+    @Override
+    public Integer login(Admin admin) {
+        return adminDao.login(admin);
     }
 }

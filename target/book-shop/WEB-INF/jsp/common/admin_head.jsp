@@ -18,7 +18,7 @@
 	<%--<b>网上书城--后台管理系统</b>--%>
 	<%--<div style="text-align: right">--%>
 
-		<%--<a href="${pageContext.request.contextPath}/admin/index.jsp">回到主页</a>--%>
+		<%--<a href="${pageContext.request.contextPath}/admin/login.jsp">回到主页</a>--%>
 		<%--<a href="${pageContext.request.contextPath}/client/login.jsp">登录</a>--%>
 	<%--</div>--%>
 

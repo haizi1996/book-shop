@@ -3,6 +3,7 @@ CREATE DATABASE book DEFAULT CHARACTER SET UTF8;
 USE book;
 
 DROP TABLE IF EXISTS `user`;
+drop table if EXISTS `admin`;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS orderitem;
@@ -14,11 +15,18 @@ CREATE DATABASE book_store DEFAULT CHARACTER SET UTF8;
 USE book_store;
 
 DROP TABLE IF EXISTS `user`;
-DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS book;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS orderitem;
 DROP TABLE IF EXISTS notice;
 DROP TABLE IF EXISTS category;
+
+create table admin(
+  id int PRIMARY KEY AUTO_INCREMENT,
+  username varchar(20) UNIQUE ,
+  passwd VARCHAR(50) not null
+)ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT = 1;
+
 
 create table category(
   id INT primary key AUTO_INCREMENT,
@@ -31,14 +39,12 @@ CREATE TABLE user
   id INT PRIMARY KEY AUTO_INCREMENT,
   username VARCHAR(20) NOT NULL,
   password VARCHAR(20) NOT NULL,
-  gender VARCHAR(4),
+  gender tinyint,
   email VARCHAR(50),
-  phone VARCHAR(20),
-  introduce varchar(100),
-  activeCode VARCHAR(50),
-  state INT(11) DEFAULT 0,
-  role VARCHAR(10),
-  registTime TIMESTAMP NOT NULL DEFAULT '2016-01-01 00:00:00'
+  mobilephone VARCHAR(20),
+  address varchar(100),
+  state TINYINT DEFAULT 0,
+  registTime TIMESTAMP NOT NULL DEFAULT current_timestamp()
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 AUTO_INCREMENT = 1;
 
 CREATE TABLE book
@@ -48,6 +54,7 @@ CREATE TABLE book
   price DOUBLE DEFAULT 0.0,
   category_id VARCHAR(40),
   num INT,
+  author varchar(20),
   image_Url VARCHAR(100),
   description VARCHAR(255),
   PRIMARY KEY(id)

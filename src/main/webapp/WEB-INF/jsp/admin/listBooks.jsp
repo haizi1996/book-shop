@@ -10,6 +10,7 @@
                 <thead>
                 <tr>
                     <th>书名</th>
+                    <th>作者</th>
                     <th>描述</th>
                     <th>所属分类</th>
                     <th>图片</th>
@@ -36,6 +37,7 @@
                 <c:forEach var="book" items="${books}">
                     <tr>
                         <td>${book.name}</td>
+                        <td>${book.author}</td>
                         <td>
                                 ${book.description}
                         </td>

@@ -16,6 +16,13 @@
             </div>
 
             <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">作者名:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="author" name="author" placeholder="author">
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">价&nbsp;格:</label>
                 <div class="input-group">
                     <div class="input-group-addon">$</div>

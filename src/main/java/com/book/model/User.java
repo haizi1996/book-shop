@@ -2,19 +2,28 @@ package com.book.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class User implements Serializable {
+public class User {
 	private String id;
 	private String username;//not null unique
 	private String password;
-	private String cellphone;
+	private Integer gender;
 	private String mobilephone;
 	private String address;
 	private String email;
-	
+	private Date registTime;
 	private List<Orders> orders = new ArrayList<Orders>();
-	
+
+	public Integer getGender() {
+		return gender;
+	}
+
+	public void setGender(Integer gender) {
+		this.gender = gender;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -32,12 +41,6 @@ public class User implements Serializable {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public String getCellphone() {
-		return cellphone;
-	}
-	public void setCellphone(String cellphone) {
-		this.cellphone = cellphone;
 	}
 	public String getMobilephone() {
 		return mobilephone;
@@ -63,6 +66,12 @@ public class User implements Serializable {
 	public void setOrders(List<Orders> orders) {
 		this.orders = orders;
 	}
-	
-	
+
+	public Date getRegistTime() {
+		return registTime;
+	}
+
+	public void setRegistTime(Date registTime) {
+		this.registTime = registTime;
+	}
 }

@@ -2,6 +2,7 @@ package com.book.controller;
 
 import com.book.dto.AbstractResult;
 import com.book.dto.BaseResult;
+import com.book.model.Admin;
 import com.book.model.Book;
 import com.book.model.BookDetail;
 import com.book.model.Category;
@@ -37,7 +38,25 @@ public class AdminController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String home() {
-        List<BookDetail> books = adminService.getAllBook(1, PAGE_SIZE);
+        return "admin/login";
+    }
+
+    @RequestMapping(value = "/admin/login", method = RequestMethod.POST)
+    public String login(Admin admin , Model model) {
+        Integer adminId = adminService.login(admin);
+        if(adminId > 0){
+            model.addAttribute("adminId" , adminId);
+            return "redirect:/admin/showBooks";
+        }else{
+
+            return "admin/login";
+        }
+    }
+
+
+    @RequestMapping(value = "/admin/showBooks", method = RequestMethod.GET)
+    public String showBooks(@RequestParam(defaultValue = "1") Integer pageNum) {
+        List<BookDetail> books = adminService.getAllBook(pageNum, PAGE_SIZE);
         return "admin/listBooks";
     }
 

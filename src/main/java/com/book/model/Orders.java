@@ -3,15 +3,13 @@ package com.book.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-//������Ϣ����Ӧ�ľ��ǹ��ﳵ�Ļ�����Ϣ
 public class Orders implements Serializable{
 	private String id;
-	private String ordernum;//�����š�notnull  unique
-	private int num;//����
-	private float price;//������
+	private String ordernum;
+	private int num;
+	private float price;
 	
-	private List<OrdersItem> items = new ArrayList<OrdersItem>();//�����еĶ�����
-	
+	private List<OrdersItem> items = new ArrayList<OrdersItem>();
 	private User user;
 
 	public String getId() {

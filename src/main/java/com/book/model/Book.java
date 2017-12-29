@@ -6,6 +6,7 @@ public class Book  {
 	protected String name;
 	protected Integer price;
 	protected Integer num;
+	protected String author;
 	protected String imageUrl;//
 	protected String description;
 	protected Integer categoryId;
@@ -73,6 +74,11 @@ public class Book  {
 				+ imageUrl + ", name=" + name + ", price=" + price + "]";
 	}
 
+	public String getAuthor() {
+		return author;
+	}
 
-	
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 }
